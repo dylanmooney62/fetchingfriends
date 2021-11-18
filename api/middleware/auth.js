@@ -1,7 +1,8 @@
 const jwt = require('jsonwebtoken');
 const StatusHandler = require('../utils/statusHandler');
+const asyncHandler = require('express-async-handler');
 
-const authenticate = (req, res, next) => {
+const authenticate = asyncHandler(async (req, res, next) => {
   const { token } = req.cookies;
 
   if (!token) {
@@ -19,7 +20,7 @@ const authenticate = (req, res, next) => {
 
     next();
   });
-};
+});
 
 module.exports = {
   authenticate,
