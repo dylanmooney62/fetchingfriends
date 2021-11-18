@@ -32,11 +32,6 @@ const login = asyncHandler(async (req, res, next) => {
 const register = asyncHandler(async (req, res, next) => {
   const user = await User.create(req.body);
 
-  // filter password before sending response
-  const { _id, name, email, role } = user;
-
-  res.status(201).send({ _id, name, email, role });
-
   sendTokenResponse(user, res);
 });
 
