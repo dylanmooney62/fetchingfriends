@@ -1,6 +1,6 @@
 const validator = require('validator').default;
 const asyncHandler = require('express-async-handler');
-const StatusHandler = require('../utils/StatusHandler');
+const StatusHandler = require('../utils/statusHandler');
 const parseFormData = require('../utils/parseFormData');
 const uploadImage = require('../utils/uploadImage');
 const Submission = require('../models/Submission');
