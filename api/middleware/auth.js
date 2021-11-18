@@ -10,7 +10,9 @@ const authenticate = (req, res, next) => {
 
   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
     if (err) {
-      next(new StatusHandler(401, 'Not authorized to access this route'));
+      return next(
+        new StatusHandler(401, 'Not authorized to access this route')
+      );
     }
 
     req.user = user;
