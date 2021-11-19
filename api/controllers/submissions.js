@@ -1,7 +1,6 @@
 const validator = require('validator').default;
 const asyncHandler = require('express-async-handler');
 const StatusHandler = require('../utils/statusHandler');
-const parseFormData = require('../utils/parseFormData');
 const uploadImage = require('../utils/uploadImage');
 const Submission = require('../models/Submission');
 
@@ -15,16 +14,8 @@ const getSubmissions = asyncHandler(async (req, res, next) => {
 });
 
 const createSubmission = asyncHandler(async (req, res, next) => {
-  console.log('this should not be getting hit');
-
-  const { files, fields } = await parseFormData(req, {
-    multiples: true,
-    maxFields: 2,
-    maxFileSize: process.env.MAX_FILE_SIZE,
-  }).then((data) => data);
-
-  const image = files?.image;
-  const submission = fields?.submission;
+  const image = req?.files?.image;
+  const submission = req?.fields?.submission;
 
   if (!image || !submission) {
     return next(
