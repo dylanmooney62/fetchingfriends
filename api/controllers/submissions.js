@@ -15,6 +15,8 @@ const getSubmissions = asyncHandler(async (req, res, next) => {
 });
 
 const createSubmission = asyncHandler(async (req, res, next) => {
+  console.log('this should not be getting hit');
+
   const { files, fields } = await parseFormData(req, {
     multiples: true,
     maxFields: 2,

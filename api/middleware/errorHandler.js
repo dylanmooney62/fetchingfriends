@@ -26,6 +26,8 @@ const errorHandler = (err, req, res, next) => {
     error = new StatusHandler(400, 'Duplicate field value entered');
   }
 
+  console.log(`Error Handler ${error.message}`.bold.red);
+
   res
     .status(error.statusCode || 500)
     .json({ success: false, status: error.statusCode, error: error.message });
