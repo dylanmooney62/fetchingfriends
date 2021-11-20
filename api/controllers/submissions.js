@@ -5,10 +5,7 @@ const uploadImage = require('../utils/uploadImage');
 const Submission = require('../models/Submission');
 
 const getSubmissions = asyncHandler(async (req, res, next) => {
-  const submissions = await Submission.find({}).populate({
-    path: 'user',
-    select: 'username',
-  });
+  const submissions = await Submission.find({});
 
   res.status(200).json({ submissions, success: true });
 });

@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const voteRouter = require('../routes/vote');
 const {
   createSubmission,
   getSubmissions,
@@ -18,5 +19,7 @@ router.post(
   authenticate,
   createSubmission
 );
+
+router.use('/:submissionId/vote', authenticate, voteRouter);
 
 module.exports = router;

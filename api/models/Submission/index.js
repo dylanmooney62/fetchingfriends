@@ -17,10 +17,6 @@ const submissionSchema = new Schema(
       type: String,
       default: 'https://picsum.photos/id/237/300',
     },
-    votes: {
-      type: Number,
-      default: 0,
-    },
     awards: [
       {
         title: {
@@ -44,7 +40,22 @@ const submissionSchema = new Schema(
   },
   {
     timestamps: true,
+    toJSON: { virtuals: true },
   }
 );
+
+submissionSchema.virtual('votes', {
+  ref: 'Vote',
+  localField: '_id',
+  foreignField: 'submission',
+  count: true,
+});
+
+submissionSchema.pre('find', function () {
+  this.populate({
+    path: 'user',
+    select: 'username',
+  }).populate('votes');
+});
 
 module.exports = mongoose.model('Submission', submissionSchema);

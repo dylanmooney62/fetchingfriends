@@ -15,7 +15,7 @@ const authenticate = asyncHandler(async (req, res, next) => {
 
     const { _id } = decoded;
 
-    const user = await User.findById({ _id });
+    const user = await User.findOne({ _id });
 
     if (!user) {
       return next(

@@ -9,6 +9,7 @@ const errorHandler = require('./middleware/errorHandler');
 // Connect to database
 require('./config/db')();
 
+const votes = require('./models/Vote');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const submissionsRouter = require('./routes/submissions');

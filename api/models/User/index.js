@@ -33,8 +33,26 @@ const userSchema = new Schema(
   },
   {
     timestamps: true,
+    toJSON: { virtuals: true },
   }
 );
+
+userSchema.virtual('votes', {
+  ref: 'Vote',
+  localField: '_id',
+  foreignField: 'user',
+});
+
+userSchema.pre('findOne', function () {
+  this.populate('votes');
+});
+
+// submissionSchema.pre('find', function () {
+//   this.populate({
+//     path: 'user',
+//     select: 'username',
+//   }).populate('votes');
+// });
 
 // Encrypt password using bcrypt
 userSchema.pre('save', async function (next) {
