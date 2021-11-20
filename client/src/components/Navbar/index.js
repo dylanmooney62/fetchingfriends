@@ -3,7 +3,7 @@ import React from 'react';
 export const Navbar = () => (
   <div className="navbar mb-2 shadow-lg text-neutral-content bg-primary">
     <div className="container mx-auto">
-      <div className="flex-1 hidden px-2 mx-2 lg:flex">
+      <div className="flex-1 flex">
         <span className="text-lg font-bold">FetchingFriends</span>
       </div>
 
