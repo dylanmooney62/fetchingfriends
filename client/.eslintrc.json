@@ -8,7 +8,7 @@
     "ecmaFeatures": {
       "jsx": true
     },
-    "ecmaVersion": 13,
+    "ecmaVersion": 12,
     "sourceType": "module"
   },
   "plugins": ["react"],
@@ -19,6 +19,17 @@
       {
         "namedComponents": "arrow-function",
         "unnamedComponents": "arrow-function"
+      }
+    ],
+    "import/prefer-default-export": "off",
+    "comma-dangle": [
+      "error",
+      {
+        "arrays": "never",
+        "objects": "always",
+        "imports": "never",
+        "exports": "never",
+        "functions": "never"
       }
     ]
   }
