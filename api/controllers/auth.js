@@ -4,6 +4,12 @@ const jwt = require('jsonwebtoken');
 const asyncHandler = require('express-async-handler');
 const StatusHandler = require('../utils/statusHandler');
 
+const register = asyncHandler(async (req, res, next) => {
+  const user = await User.create(req.body);
+
+  sendTokenResponse(user, res);
+});
+
 const login = asyncHandler(async (req, res, next) => {
   const { email, password } = req.body;
 
@@ -29,15 +35,22 @@ const login = asyncHandler(async (req, res, next) => {
   sendTokenResponse(user, res);
 });
 
-const register = asyncHandler(async (req, res, next) => {
-  const user = await User.create(req.body);
+const logout = asyncHandler(async (req, res) => {
+  res
+    .status(200)
+    .cookie('token', '', { expiryDate: 1000 })
+    .json({ success: true });
+});
 
-  sendTokenResponse(user, res);
+const getUser = asyncHandler(async (req, res, next) => {
+  res.status(200).send({ success: true, user: req.user });
 });
 
 module.exports = {
-  login,
   register,
+  login,
+  logout,
+  getUser,
 };
 
 const sendTokenResponse = (user, res) => {

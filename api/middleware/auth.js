@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 const StatusHandler = require('../utils/statusHandler');
 const asyncHandler = require('express-async-handler');
+const User = require('../models/User');
 
 const authenticate = asyncHandler(async (req, res, next) => {
   const { token } = req.cookies;
@@ -9,8 +10,14 @@ const authenticate = asyncHandler(async (req, res, next) => {
     return next(new StatusHandler(401, 'Not authorized to access this route'));
   }
 
-  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
-    if (err) {
+  try {
+    const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+
+    const { _id } = decoded;
+
+    const user = await User.findById({ _id });
+
+    if (!user) {
       return next(
         new StatusHandler(401, 'Not authorized to access this route')
       );
@@ -19,7 +26,9 @@ const authenticate = asyncHandler(async (req, res, next) => {
     req.user = user;
 
     next();
-  });
+  } catch (error) {
+    return next(new StatusHandler(401, 'Not authorized to access this route'));
+  }
 });
 
 module.exports = {
