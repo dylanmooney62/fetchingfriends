@@ -1,26 +1,9 @@
 import React from 'react';
 
 export const Navbar = () => (
-  <div className="navbar mb-2 shadow-lg bg-neutral text-neutral-content">
-    <div className="flex-none hidden lg:flex">
-      <button className="btn btn-square btn-ghost" type="button">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          className="inline-block w-6 h-6 stroke-current"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M4 6h16M4 12h16M4 18h16"
-          />
-        </svg>
-      </button>
-    </div>
+  <div className="navbar mb-2 shadow-lg text-neutral-content bg-primary">
     <div className="flex-1 hidden px-2 mx-2 lg:flex">
-      <span className="text-lg font-bold">daisyUI</span>
+      <span className="text-lg font-bold">FetchingFriends</span>
     </div>
     <div className="flex-1 lg:flex-none">
       <div className="form-control">
@@ -64,7 +47,7 @@ export const Navbar = () => (
     <div className="flex-none">
       <div className="avatar">
         <div className="rounded-full w-10 h-10 m-1">
-          <img src="https://i.pravatar.cc/500?img=32" alt="avatar" />
+          <img src="https://picsum.photos/id/237/100" alt="avatar" />
         </div>
       </div>
     </div>

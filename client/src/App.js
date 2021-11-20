@@ -2,10 +2,10 @@ import React from 'react';
 import { Navbar } from './components/Navbar';
 
 const App = () => (
-  <div>
+  <div className="font-sans">
     <Navbar />
     <a href="/test" className="btn btn-primary">
-      Hello world
+      Hello
     </a>
   </div>
 );
