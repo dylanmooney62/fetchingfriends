@@ -4,13 +4,23 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Home, Login, Submit } from './pages';
+import { RequireAuth } from './components/RequireAuth';
 
 ReactDOM.render(
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<App />}>
-        <Route index element={<h1>This is the home page</h1>} />
-        <Route path="login" element={<h1>This is the login page</h1>} />
+        <Route index element={<Home />} />
+        <Route path="login" element={<Login />} />
+        <Route
+          path="submit"
+          element={
+            <RequireAuth>
+              <Submit />
+            </RequireAuth>
+          }
+        />
       </Route>
     </Routes>
   </BrowserRouter>,

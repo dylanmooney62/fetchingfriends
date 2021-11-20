@@ -10,7 +10,9 @@ module.exports = {
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      margin: ['last'],
+    },
   },
   // eslint-disable-next-line global-require
   plugins: [require('@tailwindcss/typography'), require('daisyui')],

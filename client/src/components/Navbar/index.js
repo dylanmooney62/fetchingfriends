@@ -1,22 +1,25 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export const Navbar = () => (
   <div className="navbar mb-2 shadow-lg text-neutral-content bg-primary">
     <div className="container mx-auto">
       <div className="flex-1 flex">
-        <span className="text-lg font-bold">FetchingFriends</span>
+        <Link to="/">
+          <span className="text-lg font-bold">FetchingFriends</span>
+        </Link>
       </div>
 
       <div className="flex-one">
-        <a className="btn-white mr-3" href="/">
+        <Link className="btn-white mr-3" to="/">
           View Entries
-        </a>
-        <a className="btn-white mr-3" href="/submissions/new">
+        </Link>
+        <Link className="btn-white mr-3" to="/submit">
           Submit Entry
-        </a>
-        <a className="btn-white mr-3" href="/login">
+        </Link>
+        <Link className="btn-white mr-3" to="/login">
           Login
-        </a>
+        </Link>
       </div>
 
       <div className="flex-none">
