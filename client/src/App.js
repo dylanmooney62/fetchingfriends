@@ -30,6 +30,8 @@ const App = () => {
         gridTemplateColumns: 'repeat(3, 1fr)',
       }}
     >
+      <button className="btn btn-primary">Hello</button>
+
       {submissions.map(({ _id, title, description, imgUrl }) => (
         <li key={_id}>
           <div>
