@@ -2,52 +2,28 @@ import React from 'react';
 
 export const Navbar = () => (
   <div className="navbar mb-2 shadow-lg text-neutral-content bg-primary">
-    <div className="flex-1 hidden px-2 mx-2 lg:flex">
-      <span className="text-lg font-bold">FetchingFriends</span>
-    </div>
-    <div className="flex-1 lg:flex-none">
-      <div className="form-control">
-        <input type="text" placeholder="Search" className="input input-ghost" />
+    <div className="container mx-auto">
+      <div className="flex-1 hidden px-2 mx-2 lg:flex">
+        <span className="text-lg font-bold">FetchingFriends</span>
       </div>
-    </div>
-    <div className="flex-none">
-      <button className="btn btn-square btn-ghost" type="button">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          className="inline-block w-6 h-6 stroke-current"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-          />
-        </svg>
-      </button>
-    </div>
-    <div className="flex-none">
-      <button className="btn btn-square btn-ghost" type="button">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          className="inline-block w-6 h-6 stroke-current"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
-          />
-        </svg>
-      </button>
-    </div>
-    <div className="flex-none">
-      <div className="avatar">
-        <div className="rounded-full w-10 h-10 m-1">
-          <img src="https://picsum.photos/id/237/100" alt="avatar" />
+
+      <div className="flex-one">
+        <a className="btn-white mr-3" href="/">
+          View Entries
+        </a>
+        <a className="btn-white mr-3" href="/submissions/new">
+          Submit Entry
+        </a>
+        <a className="btn-white mr-3" href="/login">
+          Login
+        </a>
+      </div>
+
+      <div className="flex-none">
+        <div className="avatar">
+          <div className="rounded-full w-10 h-10 m-1">
+            <img src="https://picsum.photos/id/237/100" alt="avatar" />
+          </div>
         </div>
       </div>
     </div>
