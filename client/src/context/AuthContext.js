@@ -23,6 +23,17 @@ export const AuthProvider = ({ children }) => {
     })();
   }, []);
 
+  // This needs refactored
+  const register = async ({ email, username, password }) => {
+    await axios.post('/api/v1/auth/register', { email, username, password });
+
+    const {
+      data: { user },
+    } = await axios.get('/api/v1/auth/user');
+
+    setUser(user);
+  };
+
   // Possibly use callback for cleaner looking code
   const login = async ({ email, password }) => {
     await axios.post('/api/v1/auth/login', { email, password });
@@ -41,7 +52,9 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, initializing }}>
+    <AuthContext.Provider
+      value={{ user, register, login, logout, initializing }}
+    >
       {children}
     </AuthContext.Provider>
   );

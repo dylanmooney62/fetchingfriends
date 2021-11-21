@@ -1,9 +1,9 @@
 import React from 'react';
 
-export const InputGroup = ({ label, field, touched, error, ...props }) => {
+export const InputGroup = ({ id, label, field, touched, error, ...props }) => {
   return (
     <div className="form-control mb-3">
-      <label className="label" htmlFor={label}>
+      <label className="label" htmlFor={id}>
         <span className="label-text">{label}</span>
       </label>
       <input
@@ -11,12 +11,11 @@ export const InputGroup = ({ label, field, touched, error, ...props }) => {
         className={`input input-bordered  ${
           touched && error ? 'input-error' : ''
         }`}
-        id={label}
         {...props}
         {...field}
       />
       {touched && error && (
-        <label className="label" htmlFor={label}>
+        <label className="label" htmlFor={id}>
           <span className="label-text-alt">{error}</span>
         </label>
       )}
