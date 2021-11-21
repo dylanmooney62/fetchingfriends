@@ -10,12 +10,16 @@ export const AuthProvider = ({ children }) => {
   // Attempt authentication on mount to keep user signed on refresh
   useEffect(() => {
     (async () => {
-      const {
-        data: { user },
-      } = await axios.get('/api/v1/auth/user');
-
-      setUser(user);
-      setInitializing(false);
+      try {
+        const {
+          data: { user },
+        } = await axios.get('/api/v1/auth/user');
+        setUser(user);
+      } catch (error) {
+        // Fails is user is not logged in which is okay
+      } finally {
+        setInitializing(false);
+      }
     })();
   }, []);
 
