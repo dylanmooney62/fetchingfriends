@@ -16,13 +16,14 @@ export const AuthProvider = ({ children }) => {
         } = await axios.get('/api/v1/auth/user');
         setUser(user);
       } catch (error) {
-        // Fails is user is not logged in which is okay
+        // Fails if user is not logged in which is okay
       } finally {
         setInitializing(false);
       }
     })();
   }, []);
 
+  // Possibly use callback for cleaner looking code
   const login = async ({ email, password }) => {
     await axios.post('/api/v1/auth/login', { email, password });
 
@@ -33,8 +34,10 @@ export const AuthProvider = ({ children }) => {
     setUser(user);
   };
 
-  const logout = () => {
+  const logout = async (callback) => {
+    await axios.post('/api/v1/auth/logout').catch((error) => {});
     setUser(null);
+    callback();
   };
 
   return (
