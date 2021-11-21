@@ -23,7 +23,14 @@ const errorHandler = (err, req, res, next) => {
 
   // Duplicate Key found
   if (error.code === 11000) {
-    error = new StatusHandler(400, 'Duplicate field value entered');
+    console.log(error);
+
+    const duplicateKey = Object.keys(error.keyValue);
+
+    error = new StatusHandler(
+      400,
+      `Duplicate field value entered: ${duplicateKey}`
+    );
   }
 
   console.log(`Error Handler ${error.message}`.bold.red);
