@@ -5,7 +5,7 @@ import { InputGroup } from '../components/InputGroup';
 
 import * as Yup from 'yup';
 
-export const LoginSchema = Yup.object().shape({
+const SubmissionSchema = Yup.object().shape({
   title: Yup.string()
     .max(50, "Your pet's name can not be longer than 50 characters")
     .required('Pet name is required'),
@@ -13,6 +13,7 @@ export const LoginSchema = Yup.object().shape({
     500,
     'Your description can not be longer than 500 characters'
   ),
+  img: Yup.object(),
 });
 
 const Submit = () => {
@@ -24,6 +25,7 @@ const Submit = () => {
       onSubmit={(values) => {
         console.log(values);
       }}
+      validationSchema={SubmissionSchema}
     >
       {({ isSubmitting, setFieldValue }) => (
         <Form className="flex flex-row justify-between w-full max-w-5xl mx-auto space-x-12">
