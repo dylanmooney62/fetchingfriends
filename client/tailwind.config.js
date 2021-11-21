@@ -15,5 +15,9 @@ module.exports = {
     },
   },
   // eslint-disable-next-line global-require
-  plugins: [require('@tailwindcss/typography'), require('daisyui')],
+  plugins: [
+    require('@tailwindcss/typography'),
+    require('@tailwindcss/aspect-ratio'),
+    require('daisyui'),
+  ],
 };

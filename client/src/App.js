@@ -7,7 +7,7 @@ const App = () => (
   <AuthProvider>
     <div className="font-sans">
       <Navbar />
-      <main className="container mx-auto mt-12">
+      <main className="container mx-auto mt-12 px-4">
         <Outlet />
       </main>
     </div>

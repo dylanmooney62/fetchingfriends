@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 export const Navbar = () => (
-  <div className="navbar mb-2 shadow-lg text-neutral-content bg-primary">
-    <div className="container mx-auto">
+  <div className="navbar mb-2 shadow-lg text-neutral-content bg-primary ">
+    <div className="container mx-auto px-4">
       <div className="flex-1 flex">
         <Link to="/">
           <span className="text-lg font-bold">FetchingFriends</span>
