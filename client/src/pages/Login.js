@@ -1,7 +1,15 @@
 import React from 'react';
+import { Navigate } from 'react-router';
 import { LoginForm } from '../components/LoginForm';
+import { useAuth } from '../hooks/useAuth';
 
 const Login = () => {
+  const auth = useAuth();
+
+  if (auth.user) {
+    return <Navigate to="/" />;
+  }
+
   return (
     <div className="flex flex-row w-full max-w-5xl mx-auto">
       <LoginForm />

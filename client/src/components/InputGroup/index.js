@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const InputGroup = ({ onChange, label, value, ...props }) => {
+export const InputGroup = ({ label, field, touched, error, ...props }) => {
   return (
     <div className="form-control mb-3">
       <label className="label" htmlFor={label}>
@@ -8,12 +8,18 @@ export const InputGroup = ({ onChange, label, value, ...props }) => {
       </label>
       <input
         type="text"
-        className="input input-bordered"
+        className={`input input-bordered  ${
+          touched && error ? 'input-error' : ''
+        }`}
         id={label}
         {...props}
-        onChange={(e) => onChange(e.target.value)}
-        value={value}
+        {...field}
       />
+      {touched && error && (
+        <label className="label" htmlFor={label}>
+          <span className="label-text-alt">{error}</span>
+        </label>
+      )}
     </div>
   );
 };

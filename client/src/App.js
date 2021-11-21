@@ -1,17 +1,24 @@
 import React from 'react';
 import { Navbar } from './components/Navbar';
 import { Outlet } from 'react-router-dom';
-import { AuthProvider } from './context/AuthContext';
+import { useAuth } from './hooks/useAuth';
 
-const App = () => (
-  <AuthProvider>
+const App = () => {
+  const { initializing } = useAuth();
+
+  // Implement react spinner
+  if (initializing) {
+    return null;
+  }
+
+  return (
     <div className="font-sans">
       <Navbar />
       <main className="container mx-auto mt-12 px-4">
         <Outlet />
       </main>
     </div>
-  </AuthProvider>
-);
+  );
+};
 
 export default App;

@@ -15,10 +15,7 @@ const Home = () => {
         setSubmissions(data?.submissions || []);
 
         setLoading(false);
-
-        console.log(data?.submissions);
       } catch (error) {
-        console.log(error);
         setLoading(false);
       }
     };
@@ -43,10 +40,8 @@ const Home = () => {
         <label className="font-bold text-lg mr-3" htmlFor="filter">
           Filter By:
         </label>
-        <select class="select select-bordered w-full max-w-xs" id="filter">
-          <option selected="selected" value="">
-            Most Recent
-          </option>
+        <select className="select select-bordered w-full max-w-xs" id="filter">
+          <option value="">Most Recent</option>
           <option value="popular">Most Popular</option>
         </select>
       </div>

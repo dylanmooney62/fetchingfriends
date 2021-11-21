@@ -6,24 +6,27 @@ import './index.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Home, Login, Submit } from './pages';
 import { RequireAuth } from './components/RequireAuth';
+import { AuthProvider } from './context/AuthContext';
 
 ReactDOM.render(
-  <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<App />}>
-        <Route index element={<Home />} />
-        <Route path="login" element={<Login />} />
-        <Route
-          path="submit"
-          element={
-            <RequireAuth>
-              <Submit />
-            </RequireAuth>
-          }
-        />
-      </Route>
-    </Routes>
-  </BrowserRouter>,
+  <AuthProvider>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<App />}>
+          <Route index element={<Home />} />
+          <Route path="login" element={<Login />} />
+          <Route
+            path="submit"
+            element={
+              <RequireAuth>
+                <Submit />
+              </RequireAuth>
+            }
+          />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  </AuthProvider>,
   document.getElementById('root')
 );
 
