@@ -49,7 +49,7 @@ export const SignupForm = () => {
         onSubmit={handleSubmit}
         validationSchema={SignupSchema}
       >
-        {({ isSubmitting, status, errors, touched }) => (
+        {({ isSubmitting }) => (
           <Form>
             <h2 className="font-bold text-xl mb-4">Sign up for an account</h2>
             <Field
@@ -59,8 +59,6 @@ export const SignupForm = () => {
               component={InputGroup}
               label="Email"
               placeholder="Your email"
-              error={errors.email || status}
-              touched={touched.email}
             />
             <Field
               id="signup-username"
@@ -68,8 +66,6 @@ export const SignupForm = () => {
               component={InputGroup}
               label="Username"
               placeholder="Choose a username"
-              error={errors.username}
-              touched={touched.username}
             />
             <Field
               id="signup-password"
@@ -78,8 +74,6 @@ export const SignupForm = () => {
               component={InputGroup}
               label="Password"
               placeholder="Your password"
-              error={errors.password}
-              touched={touched.password}
             />
             <Field
               id="signup-cpassword"
@@ -88,8 +82,6 @@ export const SignupForm = () => {
               component={InputGroup}
               label="Confirm Password"
               placeholder="Retype your password"
-              error={errors.confirmPassword}
-              touched={touched.confirmPassword}
             />
             <button
               className="btn btn-primary btn-block mt-4"

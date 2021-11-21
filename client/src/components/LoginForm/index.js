@@ -35,7 +35,7 @@ export const LoginForm = () => {
         onSubmit={handleSubmit}
         validationSchema={LoginSchema}
       >
-        {({ isSubmitting, status, errors, touched }) => (
+        {({ isSubmitting }) => (
           <Form>
             <h2 className="font-bold text-xl mb-4">
               Login to your existing account
@@ -47,8 +47,6 @@ export const LoginForm = () => {
               component={InputGroup}
               label="Email"
               placeholder="Your email"
-              error={errors.email || status}
-              touched={touched.email}
             />
             <Field
               id="login-password"
@@ -57,8 +55,6 @@ export const LoginForm = () => {
               component={InputGroup}
               label="Password"
               placeholder="Your password"
-              error={errors.password}
-              touched={touched.password}
             />
             <button
               className="btn btn-primary btn-block mt-4"

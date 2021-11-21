@@ -1,6 +1,15 @@
 import React from 'react';
 
-export const InputGroup = ({ id, label, field, touched, error, ...props }) => {
+export const InputGroup = ({
+  id,
+  label,
+  error,
+  field,
+  form: { touched, errors },
+  ...props
+}) => {
+  const isError = touched[field.name] && errors[field.name];
+
   return (
     <div className="form-control mb-3">
       <label className="label" htmlFor={id}>
@@ -8,15 +17,14 @@ export const InputGroup = ({ id, label, field, touched, error, ...props }) => {
       </label>
       <input
         type="text"
-        className={`input input-bordered  ${
-          touched && error ? 'input-error' : ''
-        }`}
+        className={`input input-bordered ${isError && 'input-error'}`}
+        id={id}
         {...props}
         {...field}
       />
-      {touched && error && (
+      {isError && (
         <label className="label" htmlFor={id}>
-          <span className="label-text-alt">{error}</span>
+          <span className="label-text-alt">{errors[field.name]}</span>
         </label>
       )}
     </div>
