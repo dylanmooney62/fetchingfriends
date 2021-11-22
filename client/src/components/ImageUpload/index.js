@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { BiCamera } from 'react-icons/bi';
 
-export const ImageUpload = ({ onImageDrop }) => {
-  const [img, setImg] = useState(null);
+export const ImageUpload = ({ onImageDrop, error }) => {
+  const [preview, setPreview] = useState(null);
 
   const {
     getRootProps,
@@ -17,17 +17,17 @@ export const ImageUpload = ({ onImageDrop }) => {
     maxFiles: 1,
     onDrop: ([img]) => {
       if (img) {
-        setImg({
-          ...img,
-          preview: URL.createObjectURL(img),
-        });
+        setPreview(URL.createObjectURL(img));
         onImageDrop(img);
       }
     },
   });
 
   const getColor = () => {
-    if (img) {
+    if (error) {
+      return 'border-error';
+    }
+    if (preview) {
       return 'border-primary';
     }
     if (isDragAccept) {
@@ -55,9 +55,9 @@ export const ImageUpload = ({ onImageDrop }) => {
         ) : (
           <p>Drag 'n' drop a photo of your dog here</p>
         )}
-        {img && (
+        {preview && (
           <img
-            src={img.preview}
+            src={preview}
             className="w-full h-full rounded-lg object-cover object-center absolute"
             alt="user uploaded dog preview"
           />
