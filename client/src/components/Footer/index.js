@@ -13,17 +13,17 @@ const FOOTER_LINKS = [
 export const Footer = () => {
   return (
     <footer className="bg-base-300 mt-auto">
-      <div className="container mx-auto px-4 py-6 flex justify-between items-center">
-        <div className="flex items-center">
+      <div className="flex flex-col justify-center container mx-auto px-4 py-6 md:flex-row md:items-center md:justify-between">
+        <div className="flex flex-col justify-center mb-4 items-center md:flex-row md:mb-0">
           <FaDog size={24} title="logo" className="mr-2" />
           <p className="font-bold mr-3 -mb-1">Fetching Friends</p>
           <small className="-mb-1">
             Copyright © {new Date().getFullYear()} - All right reserved
           </small>
         </div>
-        <ul className="flex">
+        <ul className="flex flex-1 flex-wrap justify-center md:justify-end">
           {FOOTER_LINKS.map(({ text, to }) => (
-            <li className="mr-4 last:mr-0">
+            <li className="mr-2 last:mr-0 text-sm lg:mr-4 lg:text-base">
               <Link
                 to={to}
                 className="hover:text-neutral-focus transition-colors"
