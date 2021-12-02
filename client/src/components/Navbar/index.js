@@ -1,13 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { FaDog } from 'react-icons/fa';
 import { BiMenu } from 'react-icons/bi';
+import { MobileNav } from './MobileNav';
+import { AuthPanel } from './AuthPanel';
+
+const NAV_LINKS = [
+  { text: 'Home', to: '/' },
+  { text: 'Entries', to: '/entries' },
+  { text: 'Judges', to: '/judges' },
+];
 
 export const Navbar = () => {
   const auth = useAuth();
-  const navigate = useNavigate();
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -34,31 +41,17 @@ export const Navbar = () => {
             <span className="hidden lg:block text-base-100 font-bold ml-2 mt-1">
               |
             </span>
-            <div
-              class="items-stretch hidden lg:flex"
-              style={{ marginTop: '-1px' }}
-            >
-              <Link
-                className="btn btn-ghost btn-primary btn-sm rounded-btn text-base-100"
-                to="/"
-              >
-                Home
-              </Link>
-              <Link
-                className="btn btn-ghost btn-primary btn-sm rounded-btn text-base-100"
-                to="/"
-              >
-                Entries
-              </Link>
-              <Link
-                className="btn btn-ghost btn-primary btn-sm rounded-btn text-base-100"
-                to="/"
-              >
-                Judges
-              </Link>
+            <div class="items-stretch hidden lg:flex">
+              {NAV_LINKS.map(({ text, to }) => (
+                <Link
+                  className="btn btn-ghost btn-primary btn-sm rounded-btn text-base-100"
+                  to={to}
+                >
+                  {text}
+                </Link>
+              ))}
             </div>
           </div>
-
           <div className="flex flex-1 items-stretch lg:hidden">
             <button onClick={() => setIsOpen((o) => !o)}>
               <BiMenu
@@ -78,71 +71,12 @@ export const Navbar = () => {
                 Login | Sign up
               </Link>
             ) : (
-              <div className="flex-none">
-                <div className="dropdown dropdown-end">
-                  <div
-                    className="flex items-center justify-between space-x-2 text-white font-bold hover:bg-primary-focus cursor-pointer px-2 rounded-md transition"
-                    tabIndex="0"
-                  >
-                    <div className="avatar">
-                      <div className="rounded-full w-10 h-10 m-1">
-                        <img
-                          src="https://picsum.photos/id/237/100"
-                          alt="avatar"
-                        />
-                      </div>
-                    </div>
-                    <p className="pr-1">{auth.user.username}</p>
-                  </div>
-                  <ul
-                    tabIndex="0"
-                    className="p-2 shadow menu dropdown-content bg-base-100 rounded-box w-52"
-                  >
-                    <li>
-                      <button
-                        type="button"
-                        className="py-3 px-3 hover:bg-base-300 rounded-lg text-left transition"
-                        onClick={() => {
-                          auth.logout(() => navigate('/'));
-                        }}
-                      >
-                        Logout
-                      </button>
-                    </li>
-                  </ul>
-                </div>
-              </div>
+              <AuthPanel />
             )}
           </div>
         </div>
       </div>
-
-      {isOpen && (
-        <div className="bg-base-content">
-          <div className="container mx-auto px-4">
-            <div class="flex flex-col justify-items-start">
-              <Link
-                className="btn btn-ghost text-base-100 justify-start "
-                to="/"
-              >
-                Home
-              </Link>
-              <Link
-                className="btn btn-ghost  text-base-100 justify-start "
-                to="/"
-              >
-                Entries
-              </Link>
-              <Link
-                className="btn btn-ghost text-base-100 justify-start "
-                to="/"
-              >
-                Judges
-              </Link>
-            </div>
-          </div>
-        </div>
-      )}
+      {isOpen && <MobileNav links={NAV_LINKS} />}
     </nav>
   );
 };

@@ -5,8 +5,4 @@
   @apply btn btn-primary btn bg-base-100 text-primary border-base-100 hover:bg-base-300 hover:border-base-100 font-normal;
 }
 
-.btn-white-sm {
-  @apply btn-white btn-sm;
-}
-
 @tailwind utilities;
