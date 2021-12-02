@@ -12,9 +12,10 @@ const Login = () => {
   }
 
   return (
-    <div className="flex flex-row w-full max-w-5xl mx-auto">
+    <div className="flex space-y-10 lg:space-y-0 flex-col max-w-lg lg:flex-row w-full lg:max-w-5xl mx-auto">
       <LoginForm />
-      <div className="divider divider-vertical opacity-10"></div>
+      <div className="hidden lg:flex divider divider-vertical opacity-10"></div>
+      <div className="divider opacity-40 lg:hidden">OR</div>
       <SignupForm />
     </div>
   );
