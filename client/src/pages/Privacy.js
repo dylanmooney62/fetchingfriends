@@ -5,10 +5,10 @@ const Privacy = () => {
   const { title, updated, overview, content } = privacyPolicy;
 
   return (
-    <div className="prose xl:prose-md container mx-auto max-w-4xl">
+    <div className="prose-sm md:prose md:max-w-4xl container mx-auto ">
       <h1 className="mb-2">{title}</h1>
       <p>
-        <span className="font-bold">Last Updated :</span>
+        <span className="font-bold">Last Updated: </span>
         {updated}
       </p>
       <p>{overview}</p>
