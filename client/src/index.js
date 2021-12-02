@@ -4,7 +4,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Home, Login, Submit } from './pages';
+import { Home, Login, Submit, Privacy } from './pages';
 import { RequireAuth } from './components/RequireAuth';
 import { AuthProvider } from './context/AuthContext';
 
@@ -23,6 +23,7 @@ ReactDOM.render(
               </RequireAuth>
             }
           />
+          <Route path="/privacypolicy" element={<Privacy />} />
         </Route>
       </Routes>
     </BrowserRouter>
