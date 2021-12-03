@@ -13,4 +13,5 @@ export const SignupSchema = Yup.object().shape({
     [Yup.ref('password'), null],
     'Passwords must match'
   ),
+  consent: Yup.bool().isTrue('You must agree to the terms and conditions'),
 });

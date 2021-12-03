@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from 'react-router';
 import { useAuth } from '../../hooks/useAuth';
 import { InputGroup } from '../InputGroup';
 import { SignupSchema } from './schema';
+import { Link } from 'react-router-dom';
 
 export const SignupForm = () => {
   const auth = useAuth();
@@ -21,8 +22,6 @@ export const SignupForm = () => {
       return navigate(from, { replace: true });
     } catch (error) {
       const errorMessage = error.response.data.error;
-
-      //   More validation needs to be done for different errors, should possibly be extracted into separate function
 
       if (errorMessage.includes('Duplicate')) {
         const key = errorMessage.split(':')[1].trim();
@@ -45,6 +44,7 @@ export const SignupForm = () => {
           username: '',
           password: '',
           confirmPassword: '',
+          consent: false,
         }}
         onSubmit={handleSubmit}
         validationSchema={SignupSchema}
@@ -83,6 +83,42 @@ export const SignupForm = () => {
               label="Confirm Password"
               placeholder="Retype your password"
             />
+
+            <Field id="consent" name="consent">
+              {({ meta, field }) => (
+                <div className="form-control">
+                  <label className="cursor-pointer label" htmlFor="consent">
+                    <span className="label-text">
+                      I agree to{' '}
+                      <Link to="/terms" className="link" target="_blank">
+                        Terms & Conditions
+                      </Link>{' '}
+                      and{' '}
+                      <Link
+                        to="/privacypolicy"
+                        className="link"
+                        target="_blank"
+                      >
+                        Privacy Policy
+                      </Link>
+                    </span>
+                    <input
+                      {...field}
+                      type="checkbox"
+                      className="checkbox checkbox-primary"
+                    />
+                  </label>
+                  {meta.touched && meta.error && (
+                    <label className="label" htmlFor="consent">
+                      <span className="label-text-alt text-error">
+                        {meta.error}
+                      </span>
+                    </label>
+                  )}
+                </div>
+              )}
+            </Field>
+
             <button
               className="btn btn-primary btn-block mt-4"
               type="submit"
