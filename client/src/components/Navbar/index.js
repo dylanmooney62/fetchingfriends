@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useAuth } from '../../hooks/useAuth';
 import { useLocation } from 'react-router-dom';
 import { FaDog } from 'react-icons/fa';
 import { BiMenu } from 'react-icons/bi';
@@ -14,7 +13,6 @@ const NAV_LINKS = [
 ];
 
 export const Navbar = () => {
-  const auth = useAuth();
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -41,9 +39,10 @@ export const Navbar = () => {
             <span className="hidden lg:block text-base-100 font-bold ml-2 mt-1">
               |
             </span>
-            <div class="items-stretch hidden lg:flex">
-              {NAV_LINKS.map(({ text, to }) => (
+            <div className="items-stretch hidden lg:flex">
+              {NAV_LINKS.map(({ text, to }, idx) => (
                 <Link
+                  key={idx}
                   className="btn btn-ghost btn-primary btn-sm rounded-btn text-base-100"
                   to={to}
                 >
@@ -65,14 +64,7 @@ export const Navbar = () => {
             <Link className="btn-white mr-3" to="/submit">
               Submit Entry
             </Link>
-
-            {!auth.user ? (
-              <Link className="btn-white mr-3" to="/login">
-                Login | Sign up
-              </Link>
-            ) : (
-              <AuthPanel />
-            )}
+            <AuthPanel />
           </div>
         </div>
       </div>

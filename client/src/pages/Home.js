@@ -7,21 +7,21 @@ const Home = () => {
     <>
       <header className="bg-base-200 bg-squares">
         <Container>
-          <div class="hero">
-            <div class="flex-col hero-content lg:flex-row-reverse">
+          <div className="hero">
+            <div className="flex-col hero-content lg:flex-row-reverse">
               <img
                 src="https://images.unsplash.com/photo-1517423440428-a5a00ad493e8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDl8fGRvZ3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60"
-                class="rounded-lg shadow-2xl w-2/6 h-96 object-cover object-center"
+                className="rounded-lg shadow-2xl w-2/6 h-96 object-cover object-center"
                 alt=""
               />
               <div className="flex-1">
-                <h1 class="mb-5 text-5xl font-bold">Hello there</h1>
-                <p class="mb-5 w-5/6 text-lg text-gray-600 leading-relaxed">
+                <h1 className="mb-5 text-5xl font-bold">Hello there</h1>
+                <p className="mb-5 w-5/6 text-lg text-gray-600 leading-relaxed">
                   Provident cupiditate voluptatem et in. Quaerat fugiat ut
                   assumenda excepturi exercitationem quasi. In deleniti eaque
                   aut repudiandae et a id nisi.
                 </p>
-                <button class="btn btn-primary">Get Started</button>
+                <button className="btn btn-primary">Get Started</button>
               </div>
             </div>
           </div>
@@ -67,17 +67,18 @@ const Home = () => {
             </div>
           </div>
           <div className="text-center py-12">
-            <Link to="/login" class="btn btn-primary btn-lg">
+            <Link to="/login" className="btn btn-primary btn-lg">
               Join the fun
             </Link>
           </div>
         </Container>
         <Container>
-          <div class="grid grid-cols-3 gap-2 mx-auto">
+          <div className="grid grid-cols-3 gap-2 mx-auto">
             {Array(6)
               .fill()
               .map((_, idx) => (
                 <img
+                  key={idx}
                   src={`img/gallery/dog-${idx}.jpg`}
                   className="w-full h-full object-center object-cover"
                   alt="gallery dog"

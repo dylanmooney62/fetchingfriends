@@ -22,8 +22,11 @@ export const Footer = () => {
           </small>
         </div>
         <ul className="flex flex-1 flex-wrap justify-center md:justify-end">
-          {FOOTER_LINKS.map(({ text, to }) => (
-            <li className="mr-2 last:mr-0 text-sm lg:mr-4 lg:text-base">
+          {FOOTER_LINKS.map(({ text, to }, idx) => (
+            <li
+              className="mr-2 last:mr-0 text-sm lg:mr-4 lg:text-base"
+              key={idx}
+            >
               <Link
                 to={to}
                 className="hover:text-neutral-focus transition-colors"

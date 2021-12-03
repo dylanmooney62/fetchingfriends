@@ -6,6 +6,7 @@ import { Field, Form, Formik } from 'formik';
 import { ImageUpload } from '../components/ImageUpload';
 import { InputGroup } from '../components/InputGroup';
 import { Alert } from '../components/Alert';
+import { Container } from '../components/Container';
 
 const SubmissionSchema = Yup.object().shape({
   title: Yup.string()
@@ -50,7 +51,7 @@ const Submit = () => {
       validationSchema={SubmissionSchema}
     >
       {({ isSubmitting, setFieldValue, errors, status }) => (
-        <>
+        <Container as="main">
           {status && <Alert text={status} />}
           <Form className="flex flex-row justify-between w-full max-w-5xl mx-auto space-x-12">
             <ImageUpload
@@ -100,7 +101,7 @@ const Submit = () => {
               </button>
             </div>
           </Form>
-        </>
+        </Container>
       )}
     </Formik>
   );

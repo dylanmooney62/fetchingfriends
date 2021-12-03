@@ -11,7 +11,7 @@ const Judges = () => {
           Judges
         </h1>
         {JUDGES.map(({ name, bio, img }, idx) => (
-          <>
+          <div key={idx}>
             <article
               className="flex flex-col lg:flex-row md:mb-10 lg:mb-12"
               key={name}
@@ -23,8 +23,11 @@ const Judges = () => {
                 <h2 className="font-bold text-center text-2xl md:text-3xl text-neutral mb-2 md:mb-3 lg:mb-4 lg:text-left ">
                   {name}
                 </h2>
-                {bio.split('\n').map((text) => (
-                  <p className="mb-2 lg:last:mb-3 leading-relaxed text-base text-gray-600 md:text-lg">
+                {bio.split('\n').map((text, idx) => (
+                  <p
+                    className="mb-2 lg:last:mb-3 leading-relaxed text-base text-gray-600 md:text-lg"
+                    key={idx}
+                  >
                     {text.trim()}
                   </p>
                 ))}
@@ -33,7 +36,7 @@ const Judges = () => {
             {idx < JUDGES.length - 1 && (
               <div className="divider divider-horizontal opacity-10 mb-12"></div>
             )}
-          </>
+          </div>
         ))}
       </div>
     </Container>
