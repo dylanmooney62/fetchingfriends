@@ -2,9 +2,9 @@
 
 ## Set up
 
-1. run `npm run build` to install all packages for API and Client
+1. run `npm run build` to install all packages for API and Client.
 
-2. rename `.env.example` to `env` and update variables to match your specifications
+2. rename `.env.example` to `.env` and update variables to match your specifications.
 
 ## Running the app
 
