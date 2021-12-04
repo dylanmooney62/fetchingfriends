@@ -1,9 +1,10 @@
 import React from 'react';
 import { Container } from '../components/Container';
-import privacyPolicy from '../meta/privacypolicy.json';
+import termsConditions from '../meta/terms.json';
 
-const Privacy = () => {
-  const { title, updated, overview, content } = privacyPolicy;
+const Terms = () => {
+  const { title, updated, overview, content, interpretation, definitions } =
+    termsConditions;
 
   return (
     <Container as="main">
@@ -14,6 +15,22 @@ const Privacy = () => {
           {updated}
         </p>
         <p>{overview}</p>
+
+        <section>
+          <h2>{interpretation.title}</h2>
+          <p>{interpretation.body}</p>
+        </section>
+
+        <section>
+          <h2>{definitions.title}</h2>
+          <p>{definitions.body.text}</p>
+          <ul>
+            {definitions.body.definitions.map((definition) => (
+              <li>{definition}</li>
+            ))}
+          </ul>
+        </section>
+
         {content.map(({ title, body }, idx) => (
           <section key={idx}>
             <h2>{title}</h2>
@@ -25,4 +42,4 @@ const Privacy = () => {
   );
 };
 
-export default Privacy;
+export default Terms;

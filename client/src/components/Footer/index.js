@@ -8,6 +8,7 @@ const FOOTER_LINKS = [
   { text: 'Login', to: '/login' },
   { text: 'Sign up', to: '/login' },
   { text: 'Privacy Policy', to: '/privacypolicy' },
+  { text: 'Terms & Conditions', to: '/terms' },
 ];
 
 export const Footer = () => {
