@@ -45,7 +45,7 @@ userSchema.virtual('votes', {
 });
 
 userSchema.pre('findOne', function () {
-  this.populate('votes');
+  this.populate('votes', 'submission -user -_id');
 });
 
 // submissionSchema.pre('find', function () {

@@ -64,7 +64,7 @@ const sendTokenResponse = (user, res) => {
 
   const options = {
     httpOnly: true,
-    expiryDate: new Date(Date.now() + 60 * 60 * 1000) /* 1hour */,
+    expiryDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000) /* 30 days */,
   };
 
   if (process.env.NODE_ENV === 'production') {

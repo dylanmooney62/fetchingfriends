@@ -44,7 +44,7 @@ const submissionSchema = new Schema(
   }
 );
 
-submissionSchema.virtual('votes', {
+submissionSchema.virtual('voteCount', {
   ref: 'Vote',
   localField: '_id',
   foreignField: 'submission',
@@ -55,7 +55,7 @@ submissionSchema.pre('find', function () {
   this.populate({
     path: 'user',
     select: 'username',
-  }).populate('votes');
+  }).populate('voteCount');
 });
 
 module.exports = mongoose.model('Submission', submissionSchema);

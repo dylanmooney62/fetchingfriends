@@ -32,9 +32,6 @@ const createSubmission = asyncHandler(async (req, res, next) => {
   const { title, description } = JSON.parse(submission);
 
   const imgUrl = await uploadImage(image.filepath, {
-    width: 1000,
-    height: 1000,
-    crop: 'fill',
     folder: 'fetchingfriends/submissions',
   }).then((res) => res);
 

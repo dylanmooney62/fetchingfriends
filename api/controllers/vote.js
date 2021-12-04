@@ -27,7 +27,7 @@ const voteSubmission = asyncHandler(async (req, res, next) => {
   //   If there is a vote remove it from db
   if (vote) {
     await vote.remove();
-    return res.status(200).json({ success: true, message: 'Vote removed' });
+    return res.status(200).json({ success: true, message: 'removed' });
   }
 
   await Vote.create({
@@ -35,7 +35,7 @@ const voteSubmission = asyncHandler(async (req, res, next) => {
     submission: submission._id,
   });
 
-  res.status(201).json({ success: true, message: 'Vote added' });
+  res.status(201).json({ success: true, message: 'added' });
 });
 
 module.exports = {
