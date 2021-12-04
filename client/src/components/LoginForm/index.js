@@ -14,13 +14,13 @@ export const LoginForm = () => {
 
   const handleSubmit = async (values, actions) => {
     const { email, password } = values;
-    const { setSubmitting, setStatus } = actions;
+    const { setSubmitting, setErrors } = actions;
 
     try {
       await auth.login({ email, password });
       return navigate(from, { replace: true });
     } catch (error) {
-      setStatus(error.response.data.error);
+      setErrors({ email: error.response.data.error });
       setSubmitting(false);
     }
   };
@@ -35,7 +35,7 @@ export const LoginForm = () => {
         onSubmit={handleSubmit}
         validationSchema={LoginSchema}
       >
-        {({ isSubmitting }) => (
+        {({ isSubmitting, setErrors }) => (
           <Form>
             <h2 className="font-bold text-xl mb-4">
               Login to your existing account

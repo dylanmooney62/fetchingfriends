@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Container } from '../components/Container';
+import heroDog from '../assets/hero-dog.jpg';
 
 const Home = () => {
   return (
@@ -16,14 +17,14 @@ const Home = () => {
                 Enter your dog and vote for your favourites with Fetching
                 Friends!
               </p>
-              <button to="/" className="btn btn-primary">
+              <Link to="/entries" className="btn btn-primary">
                 Meet the friends
-              </button>
+              </Link>
             </div>
             <img
-              src="https://images.unsplash.com/photo-1517423440428-a5a00ad493e8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDl8fGRvZ3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60"
-              className="hidden md:block rounded-lg shadow-2xl h-96 object-cover object-center lg:ml-12 md:w-2/6"
-              alt=""
+              src={heroDog}
+              className="hidden md:block rounded-lg shadow-2xl h-96 object-cover object-bottom lg:ml-12 md:w-2/6"
+              alt="cute pug wearing a wooly jumper"
             />
           </div>
         </Container>

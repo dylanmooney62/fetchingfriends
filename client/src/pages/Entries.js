@@ -18,7 +18,7 @@ const Home = () => {
     <Container>
       <div className="flex items-center mb-10">
         <label className="font-bold text-lg mr-3" htmlFor="filter">
-          sortBy By:
+          Sort By:
         </label>
         <select
           className="select select-bordered w-full max-w-xs"
