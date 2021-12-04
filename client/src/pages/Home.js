@@ -5,30 +5,31 @@ import { Container } from '../components/Container';
 const Home = () => {
   return (
     <>
-      <header className="bg-base-200 bg-squares">
+      <header className="bg-base-200 bg-squares py-12">
         <Container>
-          <div className="hero">
-            <div className="flex-col hero-content lg:flex-row-reverse">
-              <img
-                src="https://images.unsplash.com/photo-1517423440428-a5a00ad493e8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDl8fGRvZ3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60"
-                className="rounded-lg shadow-2xl w-2/6 h-96 object-cover object-center"
-                alt=""
-              />
-              <div className="flex-1">
-                <h1 className="mb-5 text-5xl font-bold">Hello there</h1>
-                <p className="mb-5 w-5/6 text-lg text-gray-600 leading-relaxed">
-                  Provident cupiditate voluptatem et in. Quaerat fugiat ut
-                  assumenda excepturi exercitationem quasi. In deleniti eaque
-                  aut repudiandae et a id nisi.
-                </p>
-                <button className="btn btn-primary">Get Started</button>
-              </div>
+          <div className="flex items-center max-w-7xl m-auto">
+            <div className="flex-1">
+              <h1 className="mb-5 text-5xl font-bold text-neutral">
+                Show off your Furry Friends
+              </h1>
+              <p className="mb-5 w-5/6 text-lg text-gray-600 leading-relaxed">
+                Enter your dog and vote for your favourites with Fetching
+                Friends!
+              </p>
+              <button to="/" className="btn btn-primary">
+                Meet the friends
+              </button>
             </div>
+            <img
+              src="https://images.unsplash.com/photo-1517423440428-a5a00ad493e8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDl8fGRvZ3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60"
+              className="hidden md:block rounded-lg shadow-2xl h-96 object-cover object-center lg:ml-12 md:w-2/6"
+              alt=""
+            />
           </div>
         </Container>
       </header>
-      <main>
-        <Container as="section" className="pt-24">
+      <Container as="main">
+        <section className="py-12">
           <h1 className="font-bold text-4xl text-center mb-4 text-neutral">
             About the Contest
           </h1>
@@ -67,26 +68,27 @@ const Home = () => {
             </div>
           </div>
           <div className="text-center py-12">
-            <Link to="/login" className="btn btn-primary btn-lg">
+            <Link to="/entries" className="btn btn-primary btn-lg">
               Join the fun
             </Link>
           </div>
-        </Container>
-        <Container>
-          <div className="grid grid-cols-3 gap-2 mx-auto">
-            {Array(6)
-              .fill()
-              .map((_, idx) => (
+        </section>
+        <div className="grid grid-cols-3 gap-2 mx-auto ">
+          {Array(6)
+            .fill()
+            .map((_, idx) => (
+              <div className="aspect-w-16 aspect-h-12">
                 <img
+                  style={{ aspectRatio: 1 }}
                   key={idx}
                   src={`img/gallery/dog-${idx}.jpg`}
                   className="w-full h-full object-center object-cover"
                   alt="gallery dog"
                 ></img>
-              ))}
-          </div>
-        </Container>
-      </main>
+              </div>
+            ))}
+        </div>
+      </Container>
     </>
   );
 };
