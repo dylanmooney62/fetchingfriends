@@ -1,6 +1,6 @@
 import React from 'react';
 import { Formik, Form, Field } from 'formik';
-import { useLocation, useNavigate } from 'react-router';
+import { useNavigate } from 'react-router';
 import { useAuth } from '../../hooks/useAuth';
 import { InputGroup } from '../InputGroup';
 import { SignupSchema } from './schema';
@@ -10,8 +10,6 @@ export const SignupForm = () => {
   const auth = useAuth();
 
   const navigate = useNavigate();
-  const location = useLocation();
-  const from = location.state?.from?.pathname || '/';
 
   const handleSubmit = async (values, actions) => {
     const { email, username, password } = values;
@@ -19,7 +17,7 @@ export const SignupForm = () => {
 
     try {
       await auth.register({ email, username, password });
-      return navigate(from, { replace: true });
+      return navigate('/entries');
     } catch (error) {
       const errorMessage = error.response.data.error;
 
