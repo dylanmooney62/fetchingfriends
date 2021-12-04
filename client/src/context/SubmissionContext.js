@@ -35,11 +35,13 @@ export const SubmissionProvider = ({ children }) => {
 
     if (!votes) return;
 
-    // Flatten votes for to array for simpler comparison
+    // Flatten votes to array for simpler comparison
     setVotes(votes.map(({ submission }) => submission));
   }, [auth.user]);
 
   const vote = async (id) => {
+    if (!auth.user) return;
+
     const {
       data: { message },
     } = await axios.post(`/api/v1/submissions/${id}/vote`);

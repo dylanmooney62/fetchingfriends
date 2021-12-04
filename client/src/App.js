@@ -13,7 +13,7 @@ const App = () => {
   }
 
   return (
-    <div className="font-sans flex flex-col min-h-screen">
+    <div className="font-sans flex flex-col min-h-screen bg-base-100">
       <Navbar />
       <Outlet />
       <Footer />
