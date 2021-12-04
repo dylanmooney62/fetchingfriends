@@ -68,7 +68,7 @@ const Home = () => {
             </div>
           </div>
           <div className="text-center py-12">
-            <Link to="/entries" className="btn btn-primary btn-lg">
+            <Link to="/login" className="btn btn-primary btn-lg">
               Join the fun
             </Link>
           </div>

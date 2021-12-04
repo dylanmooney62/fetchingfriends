@@ -7,14 +7,25 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [initializing, setInitializing] = useState(true);
 
+  const authenticate = async () => {
+    await new Promise((res, rej) => {
+      axios
+        .get('/api/v1/auth/user')
+        .then(({ data: { user } }) => {
+          setUser(user);
+          res();
+        })
+        .catch((err) => {
+          rej(err);
+        });
+    });
+  };
+
   // Attempt authentication on mount to keep user signed on refresh
   useEffect(() => {
     (async () => {
       try {
-        const {
-          data: { user },
-        } = await axios.get('/api/v1/auth/user');
-        setUser(user);
+        await authenticate();
       } catch (error) {
         // Fails if user is not logged in which is okay
       } finally {
@@ -25,28 +36,20 @@ export const AuthProvider = ({ children }) => {
 
   // This needs refactored
   const register = async ({ email, username, password }) => {
-    await axios.post('/api/v1/auth/register', { email, username, password });
-
-    const {
-      data: { user },
-    } = await axios.get('/api/v1/auth/user');
-
-    setUser(user);
+    await axios
+      .post('/api/v1/auth/register', { email, username, password })
+      .then(authenticate);
   };
 
   // Possibly use callback for cleaner looking code
   const login = async ({ email, password }) => {
-    await axios.post('/api/v1/auth/login', { email, password });
-
-    const {
-      data: { user },
-    } = await axios.get('/api/v1/auth/user');
-
-    setUser(user);
+    await axios
+      .post('/api/v1/auth/login', { email, password })
+      .then(authenticate);
   };
 
   const logout = async (callback) => {
-    await axios.post('/api/v1/auth/logout').catch((error) => {});
+    await axios.post('/api/v1/auth/logout');
     setUser(null);
     callback();
   };

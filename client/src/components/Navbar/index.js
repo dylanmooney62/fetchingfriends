@@ -33,7 +33,7 @@ export const Navbar = () => {
                 className="text-white fill-current mr-2"
               />
               <span className="text-lg font-bold text-white">
-                FetchingFriends
+                Fetching Friends
               </span>{' '}
             </Link>
             <span className="hidden lg:block text-base-100 font-bold ml-2 mt-1">
