@@ -1,6 +1,14 @@
 import React from 'react';
 
-export const CardItem = ({ title, body, imgUrl }) => (
+export const SubmissionCard = ({
+  id,
+  title,
+  body,
+  imgUrl,
+  voteCount,
+  onVote,
+  hasVoted,
+}) => (
   <li>
     <div
       className="rounded-xl overflow-hidden p-4 bg-primary "
@@ -16,6 +24,13 @@ export const CardItem = ({ title, body, imgUrl }) => (
       <div className="text-center">
         <h2 className="text-2xl font-bold capitalize mb-2">{title}</h2>
         <p className="">{body}</p>
+        <p>I have: {voteCount} votes</p>
+        <p>
+          {hasVoted ? 'You have voted for me' : 'You have not voted for me'}
+        </p>
+        <button className="btn btn-primary" onClick={() => onVote(id)}>
+          Vote!
+        </button>
       </div>
     </div>
   </li>

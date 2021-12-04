@@ -89,7 +89,7 @@ export const SignupForm = () => {
                 <div className="form-control">
                   <label className="cursor-pointer label" htmlFor="consent">
                     <span className="label-text">
-                      I agree to{' '}
+                      I agree to the{' '}
                       <Link to="/terms" className="link" target="_blank">
                         Terms & Conditions
                       </Link>{' '}

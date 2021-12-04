@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Home, Login, Submit, Privacy, Judges, Entries } from './pages';
 import { RequireAuth } from './components/RequireAuth';
 import { AuthProvider } from './context/AuthContext';
+import { SubmissionProvider } from './context/SubmissionContext';
 
 ReactDOM.render(
   <AuthProvider>
@@ -14,7 +15,14 @@ ReactDOM.render(
       <Routes>
         <Route path="/" element={<App />}>
           <Route index element={<Home />} />
-          <Route path="entries" element={<Entries />} />
+          <Route
+            path="entries"
+            element={
+              <SubmissionProvider>
+                <Entries />
+              </SubmissionProvider>
+            }
+          />
           <Route path="judges" element={<Judges />} />
           <Route path="login" element={<Login />} />
           <Route

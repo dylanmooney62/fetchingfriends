@@ -1,39 +1,10 @@
-import axios from 'axios';
-import React, { useState, useEffect } from 'react';
-import { CardItem } from '../components/CardItem';
-import { CardList } from '../components/CardList';
+import React from 'react';
+import { SubmissionList } from '../components/SubmissionList';
 import { Container } from '../components/Container';
+import { useSubmissions } from '../hooks/useSubmissions';
 
 const Home = () => {
-  const [submissions, setSubmissions] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchSubmissions = async () => {
-      try {
-        const { data } = await axios.get('/api/v1/submissions');
-
-        setSubmissions(data?.submissions || []);
-
-        setLoading(false);
-      } catch (error) {
-        setLoading(false);
-      }
-    };
-
-    fetchSubmissions();
-  }, []);
-
-  const submissionList =
-    submissions.length === 0 ? (
-      <p>No submissions found</p>
-    ) : (
-      <CardList>
-        {submissions.map(({ id, title, description, imgUrl }) => (
-          <CardItem key={id} title={title} body={description} imgUrl={imgUrl} />
-        ))}
-      </CardList>
-    );
+  const { submissions, loading } = useSubmissions();
 
   return (
     <Container>
@@ -46,7 +17,7 @@ const Home = () => {
           <option value="popular">Most Popular</option>
         </select>
       </div>
-      {loading ? <p>Loading...</p> : submissionList}
+      {loading ? <p>Loading</p> : <SubmissionList submissions={submissions} />}
     </Container>
   );
 };
