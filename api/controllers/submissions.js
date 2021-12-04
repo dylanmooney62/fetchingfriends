@@ -5,7 +5,7 @@ const uploadImage = require('../utils/uploadImage');
 const Submission = require('../models/Submission');
 
 const getSubmissions = asyncHandler(async (req, res, next) => {
-  const submissions = await Submission.find({});
+  const submissions = await Submission.find({}).sort({ createdAt: -1 }).exec();
 
   res.status(200).json({ submissions, success: true });
 });
