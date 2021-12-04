@@ -38,7 +38,7 @@ const Submit = () => {
 
       await axios.post('/api/v1/submissions', data);
 
-      navigate('/');
+      navigate('/entries');
     } catch (error) {
       setStatus('Could not upload image. please try again later');
     }
@@ -64,7 +64,7 @@ const Submit = () => {
                 name="title"
                 component={InputGroup}
                 label="Your Dogs Name"
-                placeholder="Your email"
+                placeholder="Your dogs name"
               />
               <Field
                 id="description"

@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { useAuth } from '../hooks/useAuth';
+import { useNavigate } from 'react-router';
 
 const SORT_MAP = {
   POPULAR: (a, b) => b.voteCount - a.voteCount,
@@ -10,10 +11,11 @@ const SORT_MAP = {
 export const SubmissionContext = createContext({});
 
 export const SubmissionProvider = ({ children }) => {
+  const auth = useAuth();
+  const navigate = useNavigate();
   const [submissions, setSubmissions] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState();
-  const auth = useAuth();
   const [votes, setVotes] = useState([]);
 
   useEffect(() => {
@@ -45,7 +47,9 @@ export const SubmissionProvider = ({ children }) => {
   }, [auth.user]);
 
   const vote = async (id) => {
-    if (!auth.user) return;
+    if (!auth.user) {
+      return navigate('/login');
+    }
 
     const {
       data: { message },
