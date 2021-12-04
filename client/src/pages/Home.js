@@ -77,7 +77,7 @@ const Home = () => {
           {Array(6)
             .fill()
             .map((_, idx) => (
-              <div className="aspect-w-16 aspect-h-12">
+              <div className="aspect-w-16 aspect-h-12" key={idx}>
                 <img
                   style={{ aspectRatio: 1 }}
                   key={idx}

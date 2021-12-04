@@ -39,7 +39,7 @@ export const Navbar = () => {
             <span className="hidden lg:block text-base-100 font-bold ml-2 mt-1">
               |
             </span>
-            <div className="items-stretch hidden lg:flex">
+            <div className="items-stretch hidden lg:flex ml-2">
               {NAV_LINKS.map(({ text, to }, idx) => (
                 <Link
                   key={idx}

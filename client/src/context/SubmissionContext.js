@@ -2,6 +2,11 @@ import { createContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { useAuth } from '../hooks/useAuth';
 
+const SORT_MAP = {
+  POPULAR: (a, b) => b.voteCount - a.voteCount,
+  RECENT: (a, b) => new Date(a.createdAt) - new Date(b.createdAt),
+};
+
 export const SubmissionContext = createContext({});
 
 export const SubmissionProvider = ({ children }) => {
@@ -14,7 +19,7 @@ export const SubmissionProvider = ({ children }) => {
   useEffect(() => {
     const fetchSubmissions = async () => {
       try {
-        const { data } = await axios.get('/api/v1/submissions');
+        const { data } = await axios.get(`/api/v1/submissions`);
 
         setSubmissions(data?.submissions || []);
 
@@ -63,9 +68,22 @@ export const SubmissionProvider = ({ children }) => {
     );
   };
 
+  const sort = (field) => {
+    // Simulate load so sort isn't jarring
+    setLoading(true);
+
+    setInterval(() => {
+      setLoading(false);
+    }, 350);
+
+    setSubmissions((submissions) =>
+      [...submissions].sort(SORT_MAP[field.toUpperCase()])
+    );
+  };
+
   return (
     <SubmissionContext.Provider
-      value={{ submissions, loading, votes, vote, error }}
+      value={{ submissions, loading, votes, vote, error, sort }}
     >
       {children}
     </SubmissionContext.Provider>
