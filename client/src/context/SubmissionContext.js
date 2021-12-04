@@ -1,11 +1,11 @@
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import { useAuth } from '../hooks/useAuth';
 import { useNavigate } from 'react-router';
 
 const SORT_MAP = {
   POPULAR: (a, b) => b.voteCount - a.voteCount,
-  RECENT: (a, b) => new Date(a.createdAt) - new Date(b.createdAt),
+  RECENT: (a, b) => new Date(b.createdAt) - new Date(a.createdAt),
 };
 
 export const SubmissionContext = createContext({});
@@ -17,6 +17,8 @@ export const SubmissionProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState();
   const [votes, setVotes] = useState([]);
+
+  const timer = useRef(null);
 
   useEffect(() => {
     const fetchSubmissions = async () => {
@@ -45,6 +47,8 @@ export const SubmissionProvider = ({ children }) => {
     // Flatten votes to array for simpler comparison
     setVotes(votes.map(({ submission }) => submission));
   }, [auth.user]);
+
+  useEffect(() => () => clearInterval(timer.current), []);
 
   const vote = async (id) => {
     if (!auth.user) {
@@ -76,7 +80,7 @@ export const SubmissionProvider = ({ children }) => {
     // Simulate load so sort isn't jarring
     setLoading(true);
 
-    setInterval(() => {
+    timer.current = setInterval(() => {
       setLoading(false);
     }, 350);
 
